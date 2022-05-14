@@ -22,7 +22,7 @@ module ram_tb;
 reg [9:0] address;
 wire [7:0] data_out;
 reg [7:0] data_in;
-reg write, select;
+reg write, select, read;
 integer k, myseed;
 ram RAM(data_out,data_in,address,write,select);
 initial
@@ -34,12 +34,12 @@ data_in = (k+k) % 256; read = 0; write = 1; select = 1;
 end
 repeat (20)
 begin
-#2 address = $random(myseed) % 1024;
-write = 0; select = 1;
+#2 address = $random(myseed) % 1024; 
+write = 0; select = 1; 
 $display ("Address: %5d, Data: %4d",address,data);
 end 
 end
 initial myseed = 35;
-endmodule
+endmodule 
 
 
